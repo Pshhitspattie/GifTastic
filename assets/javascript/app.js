@@ -17,22 +17,6 @@ var topics = [
         $("#button-group").append(button);
     }
     
-    $("#add-tv-button").on("click", function(e) {
-        e.preventDefault();
-        var alreadyExist = false;
-        if(topics.indexOf($("#new-tv-input").val()) !== -1) {
-            alreadyExist = true; 
-        } 
-        if($("#new-tv-input").val() !== "" && alreadyExist === false) {
-            var newTv = $("#new-tv-input").val().toLowerCase();
-            topics.push(newTv);
-            var button = $("<button>").text(newTv);
-            button.attr("data-tv", newTv);
-            button.addClass("tv-button");
-            $("#button-group").append(button);
-        }
-        $("#new-tv-input").val("");
-    });
     
     $(document).on("click", ".tv-button", function() {
         var tv = $(this).attr("data-tv");
@@ -46,7 +30,7 @@ var topics = [
             var results = response.data;
             // console.log(results);
     
-            var resultsContainerSection = $("<section class='results-container'>");
+           var resultsContainerSection = $("<section class='results-container'>");
     
             for(var i = 0; i < results.length; i++) {
                 var singleResultDiv = $("<div class='result-container'>");
@@ -56,10 +40,10 @@ var topics = [
                 var p = $("<p>").text("Rating: " + rating);
     
                 var tvImg = $("<img class='result'>");
-                tvImg.attr("src", results[i].images.fixed_height_still.url);
+               tvImg.attr("src", results[i].images.fixed_height_still.url);
                 tvImg.attr("data-state", "still");
                 tvImg.attr("data-still", results[i].images.fixed_height_still.url);
-                tvImg.attr("data-animate", results[i].images.fixed_height.url);
+               tvImg.attr("data-animate", results[i].images.fixed_height.url);
     
                 singleResultDiv.prepend(tvImg);
                 singleResultDiv.prepend(p);
@@ -77,8 +61,13 @@ var topics = [
         if(state === "still") {
             $(this).attr("src", $(this).attr("data-animate"));
             $(this).attr("data-state", "animate");
-          } else {
-            $(this).attr("src", $(this).attr("data-still"));
-            $(this).attr("data-state", "still");
-        }
-    });
+
+
+        } if (state === 'animate') {
+
+                $(this).attr('src' , $(this).attr('data-still'));
+                $(this).attr('data-still' , 'still');
+
+            }
+        })
+    
