@@ -3,7 +3,17 @@ body {
 }
 
 h1 {
-background-color: white;
 text-align: center;
 }
 
+.jumbotron{
+    background-color: white;
+}
+
+#button-group {
+    text-align: center;
+}
+
+form {
+    text-align: center;
+}

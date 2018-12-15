@@ -16,6 +16,11 @@ var topics = [
         button.addClass("tv-button");
         $("#button-group").append(button);
     }
+
+    $('.tv-button').on("click", function(){
+        $("#tv-group").empty();
+    }
+    )
     
     
     $(document).on("click", ".tv-button", function() {
